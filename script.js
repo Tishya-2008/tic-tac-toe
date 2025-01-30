@@ -1,7 +1,7 @@
-const board = document.getElementById('board');
 const cells = document.querySelectorAll('.cell');
 const resetBtn = document.getElementById('reset-btn');
 const winnerDisplay = document.getElementById('winner');
+const toggleModeBtn = document.getElementById('toggle-mode-btn');
 
 let currentPlayer = 'X';
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
@@ -52,8 +52,15 @@ function resetGame() {
     });
 }
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    toggleModeBtn.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
 cells.forEach(cell => {
     cell.addEventListener('click', handleCellClick);
 });
 
 resetBtn.addEventListener('click', resetGame);
+toggleModeBtn.addEventListener('click', toggleDarkMode);
